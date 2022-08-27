@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .content > section {
+  }
+  
+  .two-letter-list {
+  }
+  
+  .two-letters {
+    text-transform: uppercase;
+  }
+  
+  .hint-form {
+    flex-grow: 1;
+  }
+  
+  .output {
+    flex-shrink: 2;
+  }
+  

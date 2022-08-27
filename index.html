@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="./styles.css" rel="stylesheet">
+        <script src="./script.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <section class="content" role="main">
+              <section class="hint-form">
+                <h1 class="title">Spelling Bee Helper</h1>
+                <form name="getHints">
+                  <fieldset>
+                    <legend>Copy and paste the grid:</legend>
+                    <textarea name="grid" id="grid"></textarea>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Copy and paste the two-letter:</legend>
+                    <textarea name="two-letter" id="two-letter"></textarea>
+                  </fieldset>
+                  <button id="show-me-the-text">
+                    Show Me The Text
+                  </button>
+                </form>
+              </section>
+              <section class="output" id="grid-output">
+                <pre></pre>
+              </section>
+              <section class="output" id="two-letter-output">
+                <pre></pre>
+              </section>
+            </section>
+          </div>
+    </body>
+</html>
