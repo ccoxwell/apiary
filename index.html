@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="./styles.css" rel="stylesheet">
-        <script src="./script.js" type="text/javascript"></script>
-    </head>
-    <body>
+
+<head>
+    <link href="./normalize.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
+    <script src="./script.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <main role="main">
+        <section>
+            <h1 class="title">The Apiary 🐝🩺</h1>
+        </section>
         <div class="wrapper">
-            <section class="content" role="main">
-              <section class="hint-form">
-                <h1 class="title">Spelling Bee Helper</h1>
-                <form name="getHints">
-                  <fieldset>
-                    <legend>Copy and paste the grid:</legend>
-                    <textarea name="grid" id="grid"></textarea>
-                  </fieldset>
-                  <fieldset>
-                    <legend>Copy and paste the two-letter:</legend>
-                    <textarea name="two-letter" id="two-letter"></textarea>
-                  </fieldset>
-                  <button id="show-me-the-text">
-                    Show Me The Text
-                  </button>
-                </form>
-              </section>
-              <section class="output" id="grid-output">
-                <pre></pre>
-              </section>
-              <section class="output" id="two-letter-output">
-                <pre></pre>
-              </section>
+            <section class="content">
+                <section class="hint-form">
+                    <form name="getHints">
+                        <fieldset>
+                            <legend>Copy and paste the grid:</legend>
+                            <textarea name="grid" id="grid" rows="10" cols="30" spellcheck="false"
+                                wrap="soft"></textarea>
+                        </fieldset>
+                        <!-- this could be a template? -->
+                        <fieldset>
+                            <legend>Copy and paste the two-letter:</legend>
+                            <textarea name="two-letter" id="two-letter" rows="10" cols="30" spellcheck="false"
+                                wrap="soft"></textarea>
+                        </fieldset>
+                        <button id="show-me-the-text">
+                            Show Me The Text
+                        </button>
+                    </form>
+                </section>
             </section>
-          </div>
-    </body>
+            <section class="output" id="grid-output">
+
+            </section>
+            <section class="output" id="two-letter-output">
+                <!-- <ul>
+                      <li>
+                          <label for="item-1">Test</label><input type="checkbox" name="item-1"><input type="checkbox" name="item-1"><input type="checkbox" name="item-1">
+                      </li>
+                      <li>
+                          <label for="item-2">Test</label><input type="checkbox" name="item-2"><input type="checkbox" name="item-2"><input type="checkbox" name="item-2">
+                      </li>
+                      <li>
+                          <label for="item-3">Test</label><input type="checkbox" name="item-3"><input type="checkbox" name="item-3"><input type="checkbox" name="item-3">
+                      </li>
+                      <li>
+                          <label for="item-4">Test</label><input type="checkbox" name="item-4"><input type="checkbox" name="item-4"><input type="checkbox" name="item-4">
+                      </li>
+                  </ul> -->
+            </section>
+        </div>
+    </main>
+</body>
+
 </html>

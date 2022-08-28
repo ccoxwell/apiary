@@ -1,27 +1,123 @@
+@font-face {
+    font-family: 'Franklin';
+    src: url('./fonts/franklin-normal-500.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Karnak';
+    src: url('./fonts/karnakcondensed-normal-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Imperial Normal';
+    src: url('./fonts/imperial-normal-500.ttf') format('truetype');
+}
+
+:root {
+    --heading-font: 'Karnak';
+    --body-font: 'Franklin';
+    --base-font-size: 16px;
+    --bee-yellow: #f7da21;
+    --bee-border-grey: #dcdcdc;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--base-font-size)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font)
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+form {
+    /* background-color: var(--bee-yellow); */
+}
+
+textarea, input {
+    /* outline: none; */
+}
+
+fieldset {
+    border: 1px solid var(--bee-border-grey);
+    border-radius: 6px;
+}
+
+textarea {
+    font-family: 'Imperial Normal';
+    resize: none;
+    border: 1px solid grey;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid var(--bee-yellow);
+}
+
+button {
+    /* background-color: var(--bee-yellow); */
+}
+
+input[type='checkbox'] {
+    height: 21px;
+    width: 21px;
+    margin-left: 3px;
+}
+input[type='checkbox']:checked::before {
+    background-color: var(--bee-yellow);
+    background: var(--bee-yellow)
+}
+
+li {
+    list-style-type: none;
+    padding: 4px 0 4px 1px;
+    margin-bottom: 7px;
+    border-bottom: 1px solid var(--bee-border-grey);
+}
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 .wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
-  .content {
+}
+
+.content {
     display: flex;
     flex-direction: column;
-  }
-  .content > section {
-  }
-  
-  .two-letter-list {
-  }
-  
-  .two-letters {
+}
+
+.content>section {}
+
+.two-letter-list {}
+
+.two-letters {
     text-transform: uppercase;
-  }
-  
-  .hint-form {
+}
+
+.hint-form {
     flex-grow: 1;
-  }
-  
-  .output {
+}
+
+.output {
     flex-shrink: 2;
-  }
-  
+}
