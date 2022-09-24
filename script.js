@@ -1,5 +1,4 @@
-import BeeHelper  from './utils/grid-parser.js'
-import { createArrayFromTwoLetter, getTwoLetterObject } from './utils/two-letter-parser.js'
+import BeeHelper from './utils/BeeHelper.js'
 
 window.addEventListener('DOMContentLoaded', (event) => {
     const gridTextArea = document.getElementById("grid");
@@ -60,21 +59,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     showMeButton.onclick = e => {
         e.preventDefault();
         const gridText = gridTextArea.value
+        const twoLetterText = twoLetterTextArea.value
         gridOutputPre.textContent = gridText
-        const helper = new BeeHelper(gridText)
-        let gridData = helper.mapLettersAndCounts()
-        const twoLetterObjectArray = createArrayFromTwoLetter(
-            twoLetterTextArea.value
-        ).map((twoLetter) => getTwoLetterObject(twoLetter));
-        let twoLetterListUl = createTwoLetterListElement(twoLetterObjectArray);
+        const helper = new BeeHelper(gridText, twoLetterText)
+        let gridData = helper.lettersAndCounts
+        let twoLetterData = helper.cleanTwoLetterArray
+        console.log(gridData)
+        let twoLetterListUl = createTwoLetterListElement(twoLetterData);
         twoLetterOutputSection.appendChild(twoLetterListUl);
     }
 
     const resetElementContents = (element) => element.innerHTML = ''
-
-    // showMeButton.addEventListener("click", function logOutput(e) {
-
-    // });
-
 });
 
