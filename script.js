@@ -1,3 +1,6 @@
+import BeeHelper  from './utils/grid-parser.js'
+import { createArrayFromTwoLetter, getTwoLetterObject } from './utils/two-letter-parser.js'
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const gridTextArea = document.getElementById("grid");
     const twoLetterTextArea = document.getElementById("two-letter");
@@ -5,16 +8,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const gridOutputPre = document.querySelector("#grid-output > pre");
     const twoLetterOutputSection = document.getElementById("two-letter-output");
     const twoLetterOutputPre = document.querySelector("#two-letter-output > pre");
-
-    showMeButton.addEventListener("click", function logOutput(e) {
-        e.preventDefault();
-        // gridOutputPre.textContent = gridTextArea.value;
-        const twoLetterObjectArray = createArrayFromTwoLetter(
-            twoLetterTextArea.value
-        ).map((twoLetter) => getTwoLetterObject(twoLetter));
-        let twoLetterListUl = createTwoLetterListElement(twoLetterObjectArray);
-        twoLetterOutputSection.appendChild(twoLetterListUl);
-    });
 
     function createElementWithText(elementTag, textContent) {
         let el = document.createElement(elementTag);
@@ -29,24 +22,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 element.removeChild(element.firstChild);
             }
         }
-    }
-
-    const createArrayFromTwoLetter = (twoLetterText) => {
-        let twoLetterArray = twoLetterText
-            .trim()
-            .split("\n")
-            .map((row) => row.split(" "))
-            .reduce((prev, curr) => prev.concat(curr));
-        return twoLetterArray;
-    }
-
-    const getTwoLetterObject = (twoLetterEntry) => {
-        const twoLetterEntryArr = twoLetterEntry.split("-");
-        return {
-            id: twoLetterEntry,
-            value: twoLetterEntryArr[0].toLowerCase(),
-            count: Number(twoLetterEntryArr[1])
-        };
     }
 
     const createTwoLetterListElement = (twoLetterArr) => {
@@ -77,10 +52,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("name", twoLetterObject.value);
-        //   instead of setting checked like this, i should probably create an attribute node that conditionally adds the checked attribute
+        //  instead of setting checked like this, i should probably create an attribute node that conditionally adds the checked attribute
         // checkbox.setAttribute("checked", val)
         return checkbox;
     }
+
+    showMeButton.onclick = e => {
+        e.preventDefault();
+        const gridText = gridTextArea.value
+        gridOutputPre.textContent = gridText
+        const helper = new BeeHelper(gridText)
+        let gridData = helper.mapLettersAndCounts()
+        const twoLetterObjectArray = createArrayFromTwoLetter(
+            twoLetterTextArea.value
+        ).map((twoLetter) => getTwoLetterObject(twoLetter));
+        let twoLetterListUl = createTwoLetterListElement(twoLetterObjectArray);
+        twoLetterOutputSection.appendChild(twoLetterListUl);
+    }
+
+    const resetElementContents = (element) => element.innerHTML = ''
+
+    // showMeButton.addEventListener("click", function logOutput(e) {
+
+    // });
 
 });
 
