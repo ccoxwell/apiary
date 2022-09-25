@@ -1,4 +1,5 @@
 import BeeHelper from './utils/BeeHelper.js'
+import BeeListItem from './components/BeeListItem.js'
 
 window.addEventListener('DOMContentLoaded', (event) => {
     const gridTextArea = document.getElementById("grid");
@@ -7,6 +8,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const gridOutputPre = document.querySelector("#grid-output > pre");
     const twoLetterOutputSection = document.getElementById("two-letter-output");
     const twoLetterOutputPre = document.querySelector("#two-letter-output > pre");
+    customElements.define('list-item', BeeListItem)
 
     function createElementWithText(elementTag, textContent) {
         let el = document.createElement(elementTag);
