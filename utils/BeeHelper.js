@@ -1,45 +1,55 @@
-import {cleanUpRow, cleanUpTwoLetter} from './helpers.js'
+import {cleanUpGridRow, cleanUpTwoLetter} from './helpers.js'
 
 export default class BeeHelper {
-    constructor(grid, twoLetter) {
+    constructor(grid = null, twoLetter) {
         this.grid = grid
         this.twoLetter = twoLetter
     }
 
-    get cleanTwoLetterArray() {
+    get twoLetterData() {
         return cleanUpTwoLetter(this.twoLetter)
     }
 
-    get cleanGrid() {
-        let cleanGrid = this.grid.split('\n').map(row => cleanUpRow(row))
-        return cleanGrid
+    get gridData() {
+        return this.grid.split('\n').map(row => cleanUpGridRow(row))
     }
 
     get lengthsArray() {
-        return this.cleanGrid[0].slice(1)
+        return this.gridData[0].slice(1)
     }
 
     get lettersArray() {
-        return this.cleanGrid.map(row => row[0]).slice(1).map(letter => letter.replace(":", "")).map(letter => letter.toUpperCase())
+        return this.gridData.map(row => row[0]).slice(1).map(letter => letter.replace(":", "")).map(letter => letter.toUpperCase())
+    }
+
+    removeSigmaColumn(grid) {
+        return grid.map(row => row.slice(0, -1))
+    }
+
+    removeSigmaRow(grid) {
+        return grid.slice(0, -1)
     }
 
     get countMatrix() {
-        let [, ...noColHeaders] = this.cleanGrid
-        return noColHeaders.map(row => row.slice(1)).map(row => {
+        const [, ...noColHeaders] = this.gridData
+        const matrixNoSigmaColumn = this.removeSigmaColumn(noColHeaders)
+        const matrixNoSigmaRow = this.removeSigmaRow(matrixNoSigmaColumn)
+        return matrixNoSigmaRow.map(row => row.slice(1)).map(row => {
             return row.map(count => Number(count)).map(count => Number.isNaN(count) ? 0 : count)
         })
     }
 
     get lettersAndCounts() {
-        return this.countMatrix.map((row, i) => {
+        return this.countMatrix.flatMap((row, i) => {
             return row.map((count, j) => {
+                const letterLength = `${this.lettersArray[i]}${this.lengthsArray[j]}`
                 return {
-                    letter: this.lettersArray[i],
-                    length: this.lengthsArray[j],
+                    id: letterLength,
+                    value: letterLength,
                     count
                 }
             })
-        })
+        }).filter(x => x.count !== 0)
     }
 
 }

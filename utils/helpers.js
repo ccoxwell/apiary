@@ -2,22 +2,31 @@ const cleanUpLetter = (letter) => letter.trim().replace(":", "").toUpperCase()
 
 const cleanUpNumber = (num) => Number.isNaN(Number(num)) ? 0 : Number(num)
 
-const cleanUpRow = (row) => row.split('\t').map((item, i) => i === 0 ? cleanUpLetter(item) : cleanUpNumber(item))
+const getLetterOrNumber = (item, i) => i === 0 ? cleanUpLetter(item) : cleanUpNumber(item)
 
-const cleanUpTwoLetter = (twoLetterText) => {
-    return twoLetterText
-        .trim()
-        .split('\n')
-        .map((row) => row.split(" "))
-        .reduce((prev, curr) => prev.concat(curr))
-        .map(item => item.split('-'))
-        .map(itemArray => {
-            return {
-                id: itemArray,
-                value: itemArray[0].toLowerCase(),
-                count: Number(itemArray[1])
-            }
-        })
+const cleanUpGridRow = (row) => row.split('\t').map((item, i) => getLetterOrNumber(item, i))
+
+const flattenTwoLetterText = (twoLetterText) => {
+    const rowsArray = twoLetterText.trim().split('\n').map(row => row.split(' '))
+    return rowsArray.flat()
 }
 
-export {cleanUpRow, cleanUpTwoLetter}
+const isolateTwoLetter = twoLetter => twoLetter.split('-')[0].toLowerCase()
+
+const isolateCount = twoLetter => Number(twoLetter.split('-')[1])
+
+const createTwoLetterObj = item => {
+    return {
+        id: item,
+        value: isolateTwoLetter(item),
+        count: isolateCount(item)
+    }
+}
+
+const cleanUpTwoLetter = twoLetterText => {
+    const flatTwoLetterArray = flattenTwoLetterText(twoLetterText)
+    return flatTwoLetterArray
+        .map(item => createTwoLetterObj(item))
+}
+
+export {cleanUpGridRow, cleanUpTwoLetter}

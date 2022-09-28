@@ -1,18 +1,13 @@
+import UnorderedList from './components/UnorderedList.js';
 import BeeHelper from './utils/BeeHelper.js'
 
 window.addEventListener('DOMContentLoaded', (event) => {
     const gridTextArea = document.getElementById("grid");
     const twoLetterTextArea = document.getElementById("two-letter");
     const showMeButton = document.getElementById("show-me-the-text");
-    const gridOutputPre = document.querySelector("#grid-output > pre");
+    const gridOutputSection = document.querySelector("#grid-output");
     const twoLetterOutputSection = document.getElementById("two-letter-output");
-    const twoLetterOutputPre = document.querySelector("#two-letter-output > pre");
-
-    function createElementWithText(elementTag, textContent) {
-        let el = document.createElement(elementTag);
-        el.textContent = textContent;
-        return el;
-    }
+    // const twoLetterOutputPre = document.querySelector("#two-letter-output > pre");
 
     // how do i make this automatically reactive
     function clearOutputElements(elementArray) {
@@ -23,50 +18,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    const createTwoLetterListElement = (twoLetterArr) => {
-        let ul = document.createElement("ul");
-        ul.classList.add("two-letter-list");
-        for (const twoLetter of twoLetterArr) {
-            ul.appendChild(createTwoLetterLi(twoLetter));
-        }
-        return ul;
-    }
-
-    const createTwoLetterLi = (twoLetterObject) => {
-        let li = document.createElement("li");
-        li.id = twoLetterObject.id;
-        let lettersSpan = document.createElement("span");
-        lettersSpan.classList.add("two-letters");
-        lettersSpan.innerText = twoLetterObject.value;
-        let checkboxesSpan = document.createElement("span");
-        for (let i = 0; i < twoLetterObject.count; i++) {
-            checkboxesSpan.appendChild(createCheckbox(twoLetterObject));
-        }
-        li.appendChild(lettersSpan);
-        li.appendChild(checkboxesSpan);
-        return li;
-    }
-
-    const createCheckbox = (twoLetterObject, val = false) => {
-        let checkbox = document.createElement("input");
-        checkbox.setAttribute("type", "checkbox");
-        checkbox.setAttribute("name", twoLetterObject.value);
-        //  instead of setting checked like this, i should probably create an attribute node that conditionally adds the checked attribute
-        // checkbox.setAttribute("checked", val)
-        return checkbox;
-    }
 
     showMeButton.onclick = e => {
         e.preventDefault();
         const gridText = gridTextArea.value
         const twoLetterText = twoLetterTextArea.value
-        gridOutputPre.textContent = gridText
-        const helper = new BeeHelper(gridText, twoLetterText)
-        let gridData = helper.lettersAndCounts
-        let twoLetterData = helper.cleanTwoLetterArray
-        console.log(gridData)
-        let twoLetterListUl = createTwoLetterListElement(twoLetterData);
-        twoLetterOutputSection.appendChild(twoLetterListUl);
+        const bee = new BeeHelper(gridText, twoLetterText)
+        // gridOutputPre.textContent = gridText
+        // let gridData = bee.gridData
+        // console.log(bee.lettersAndCounts)
+        // let twoLetterData = bee.twoLetterData
+        console.log('lettersAndCounts', bee.lettersAndCounts)
+        const twoLetterUl = new UnorderedList(bee.twoLetterData)
+        const gridUl = new UnorderedList(bee.lettersAndCounts)
+        twoLetterOutputSection.appendChild(twoLetterUl.el)
+        gridOutputSection.appendChild(gridUl.el)
     }
 
     const resetElementContents = (element) => element.innerHTML = ''
