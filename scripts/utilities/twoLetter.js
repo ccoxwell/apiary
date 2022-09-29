@@ -1,11 +1,3 @@
-const cleanUpLetter = (letter) => letter.trim().replace(":", "").toUpperCase()
-
-const cleanUpNumber = (num) => Number.isNaN(Number(num)) ? 0 : Number(num)
-
-const getLetterOrNumber = (item, i) => i === 0 ? cleanUpLetter(item) : cleanUpNumber(item)
-
-const cleanUpGridRow = (row) => row.split('\t').map((item, i) => getLetterOrNumber(item, i))
-
 const flattenTwoLetterText = (twoLetterText) => {
     const rowsArray = twoLetterText.trim().split('\n').map(row => row.split(' '))
     return rowsArray.flat()
@@ -29,4 +21,4 @@ const cleanUpTwoLetter = twoLetterText => {
         .map(item => createTwoLetterObj(item))
 }
 
-export {cleanUpGridRow, cleanUpTwoLetter}
+export default cleanUpTwoLetter
