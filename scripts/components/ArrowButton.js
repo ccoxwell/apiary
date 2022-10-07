@@ -1,9 +1,16 @@
 export default class ArrowButton {
+    /**
+     * Create ArrowButton object
+     * @param {'up' | 'down'} direction 
+     */
     constructor(direction) {
-        // How to restrict this to only up or down
         this.direction = direction.toLowerCase()
     }
 
+    /**
+     * Get the ArrowButton element.
+     * @return {HTMLButtonElement} an arrow button.
+     */
     get el() {
         const arrowButton = document.createElement("button")
         const arrowIcon = document.createElement('i')

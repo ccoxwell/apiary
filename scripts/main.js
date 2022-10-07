@@ -1,4 +1,4 @@
-import UnorderedList from './components/UnorderedList.js';
+import ResultsTable from './components/ResultsTable.js';
 import BeeHelper from './beeHelper.js'
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -24,8 +24,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         const gridText = gridTextArea.value
         const twoLetterText = twoLetterTextArea.value
         const bee = new BeeHelper(gridText, twoLetterText)
-        const twoLetterUl = new UnorderedList(bee.twoLetterData)
-        const gridUl = new UnorderedList(bee.lettersAndCounts)
+        const twoLetterUl = new ResultsTable(bee.twoLetterData)
+        const gridUl = new ResultsTable(bee.lettersAndCounts)
         twoLetterOutputSection.appendChild(twoLetterUl.el)
         gridOutputSection.appendChild(gridUl.el)
     }
