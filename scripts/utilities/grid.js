@@ -30,7 +30,7 @@ const cleanUpGrid = (grid) => {
         return row.map((count, j) => {
             const letterLength = `${lettersArray(grid)[i]}${lengthsArray(grid)[j]}`
             return {
-                id: letterLength,
+                id: letterLength.toLowerCase(),
                 value: letterLength,
                 count
             }
