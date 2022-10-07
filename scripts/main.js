@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const showMeButton = document.getElementById("show-me-the-text");
     const gridOutputSection = document.querySelector("#grid-output");
     const twoLetterOutputSection = document.getElementById("two-letter-output");
-    // const twoLetterOutputPre = document.querySelector("#two-letter-output > pre");
 
     // how do i make this automatically reactive
     function clearOutputElements(elementArray) {
@@ -20,7 +19,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     showMeButton.onclick = e => {
-        e.preventDefault();
+        e.preventDefault()
+        twoLetterOutputSection.innerHTML = ''
+        gridOutputSection.innerHTML = ''
         const gridText = gridTextArea.value
         const twoLetterText = twoLetterTextArea.value
         const bee = new BeeHelper(gridText, twoLetterText)

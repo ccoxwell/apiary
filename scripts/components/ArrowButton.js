@@ -18,6 +18,7 @@ export default class ArrowButton {
         arrowButton.className = "arrow"
         arrowIcon.className = arrowClass
         arrowButton.appendChild(arrowIcon)
+        // arrowButton.addEventListener('click', e => console.log('clicked'))
         return arrowButton
     }
 }

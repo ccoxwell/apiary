@@ -1,22 +1,25 @@
 import TableCell from './TableCell.js'
 
 export default class TableRow {
-    constructor(itemData) {
-        this.itemData = itemData
-        this.label = itemData.value
-        this.remaining = itemData.count
-        this.maximum = itemData.count
-        this.count = itemData.count
-        this.id = itemData.id
+    constructor({value, count, id}) {
+        this.label = value
+        this.remaining = count
+        this.maximum = count
+        this.count = count
+        this.id = id
         this.found = 0
     }
 
     get el() {
         const tr = document.createElement('tr')
-        const labelCell = new TableCell({column: 'label', content: this.label}).el
-        const buttonCell = new TableCell({column: 'buttons', content: this.count}).el
-        const foundCell = new TableCell({column: 'found', content: this.found}).el
-        const remainingCell = new TableCell({column: 'remaining', content: this.remaining}).el
+        const labelCell = new TableCell('label', this.label).el
+        const buttonCell = new TableCell('buttons',this.count, this.id, this.maximum).el
+        const foundCell = new TableCell('found', this.found).el
+        const remainingCell = new TableCell('remaining', this.remaining).el
+        buttonCell.setAttribute('data-tr-id', this.id)
+        foundCell.setAttribute('data-val', this.found)
+        remainingCell.setAttribute('data-val', this.remaining)
+        tr.id = this.id
         tr.appendChild(labelCell)
         tr.appendChild(buttonCell)
         tr.appendChild(foundCell)
