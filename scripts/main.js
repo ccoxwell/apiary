@@ -8,16 +8,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const gridOutputSection = document.querySelector("#grid-output");
     const twoLetterOutputSection = document.getElementById("two-letter-output");
 
-    // how do i make this automatically reactive
-    function clearOutputElements(elementArray) {
-        for (const element of elementArray) {
-            while (element.firstChild) {
-                element.removeChild(element.firstChild);
-            }
-        }
-    }
-
-
     showMeButton.onclick = e => {
         e.preventDefault()
         twoLetterOutputSection.innerHTML = ''
@@ -30,7 +20,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
         twoLetterOutputSection.appendChild(twoLetterUl.el)
         gridOutputSection.appendChild(gridUl.el)
     }
-
-    const resetElementContents = (element) => element.innerHTML = ''
-});
+})
 

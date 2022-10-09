@@ -39,6 +39,7 @@ const handleArrowButtonClick = (e, direction, maximum) => {
             found.el.innerText = found.val
             remaining.el.setAttribute('data-val', remaining.val)
             remaining.el.innerText = remaining.val
+            parentTr.setAttribute('data-remaining', remaining.val)
             return true
         } else {
             return false
@@ -53,6 +54,7 @@ const handleArrowButtonClick = (e, direction, maximum) => {
             found.el.innerText = found.val
             remaining.el.setAttribute('data-val', remaining.val)
             remaining.el.innerText = remaining.val
+            parentTr.setAttribute('data-remaining', remaining.val)
             return true
         }
     }
